@@ -9,13 +9,19 @@ public class TooltipTrigger : MonoBehaviour, IPointerEnterHandler, IPointerExitH
     public string Content;
     public string Header;
 
+    private static LTDescr delay;
+
     public void OnPointerEnter (PointerEventData eventData)
     {
-        TooltipSystem.Show (Content, Header);
+        delay = LeanTween.delayedCall(0.5f, () =>
+        {
+            TooltipSystem.Show (Content, Header);
+        });
     }
 
     public void OnPointerExit (PointerEventData eventData)
     {
+        LeanTween.cancel(delay.uniqueId);
         TooltipSystem.Hide ();
     }
 }

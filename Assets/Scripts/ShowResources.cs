@@ -18,6 +18,6 @@ public class ShowResources : MonoBehaviour
     void Update ()
     {
         Total = GameManager.Resources;
-        output.text = "Resources:\n" + Total + "\nCPM: " + CPM;
+        output.text = "Resources:\n" + Total + "\n" + CPM  + "CPM";
     }
 }

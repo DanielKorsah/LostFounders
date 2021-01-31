@@ -12,6 +12,12 @@ public class Tooltip : MonoBehaviour
     public LayoutElement LayoutElement;
     public int characterWrapLimit;
 
+    private RectTransform rect;
+
+    private void Awake() {
+        rect = GetComponent<RectTransform>();
+    }
+
     public void SetText (string content, string header = "")
     {
         if (string.IsNullOrEmpty (header))
@@ -35,6 +41,16 @@ public class Tooltip : MonoBehaviour
         {
             UpdateWrapping ();
         }
+    
+        Vector2 position = Input.mousePosition;
+        transform.position = position;
+    
+        float pivotX = position.x/Screen.width;
+        float pivotY = position.y/Screen.height;
+
+        rect.pivot = new Vector2(pivotX, pivotY);
+    
+        
 
     }
 
